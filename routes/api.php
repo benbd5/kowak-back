@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::apiResource('workSpace', \App\Http\Controllers\WorkSpaceController::class);
+    Route::apiResource('features', \App\Http\Controllers\FeaturesController::class);
+    Route::apiResource('appartenir', \App\Http\Controllers\AppartenirController::class);
+    Route::apiResource('location', \App\Http\Controllers\LocationController::class);
 });
+
