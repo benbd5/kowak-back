@@ -115,6 +115,8 @@ class WorkSpace extends Model
 
         'longitude' => [],
 
+        'featuresId' => [],
+
     ];
 
     public function usersAppartenir(): BelongsToMany

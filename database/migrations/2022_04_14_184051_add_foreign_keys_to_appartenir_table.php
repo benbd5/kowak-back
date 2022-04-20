@@ -24,7 +24,7 @@ class AddForeignKeysToAppartenirTable extends Migration
                 ->references(['workSpaceId'])
                 ->on('workSpace')
                 ->onUpdate('NO ACTION')
-                ->onDelete('NO ACTION');
+                ->onDelete('CASCADE');
         });
     }
 

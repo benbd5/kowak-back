@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 /**
  * Class Location
  * @package App\Models
- * 
+ *
  * @property integer $workSpaceId
  * @property integer $userId
  * @property string $startDate
@@ -44,7 +44,7 @@ class Location extends Model
      *
      * @var bool
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.

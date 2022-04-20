@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AppartenirController;
+use App\Http\Controllers\FeaturesController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\WorkSpaceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +22,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    Route::apiResource('workSpace', \App\Http\Controllers\WorkSpaceController::class);
-    Route::apiResource('features', \App\Http\Controllers\FeaturesController::class);
-    Route::apiResource('appartenir', \App\Http\Controllers\AppartenirController::class);
-    Route::apiResource('location', \App\Http\Controllers\LocationController::class);
+    Route::apiResource('workSpace', WorkSpaceController::class);
+    Route::apiResource('features', FeaturesController::class);
+    Route::apiResource('appartenir', AppartenirController::class);
+    Route::apiResource('location', LocationController::class);
 });
 

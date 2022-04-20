@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Features;
 use App\Http\Requests\StoreFeaturesRequest;
+use Illuminate\Http\JsonResponse;
 
 class FeaturesController extends Controller
 {
@@ -11,7 +12,7 @@ class FeaturesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
@@ -23,11 +24,14 @@ class FeaturesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreFeaturesRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(StoreFeaturesRequest $request)
     {
         $item = new Features;
+
+        // Attach attributes to the workspace
+
         $item->fill($request->validated());
         $item->save();
         return response()->json(compact('item'));
@@ -37,7 +41,7 @@ class FeaturesController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function show($id)
     {
@@ -50,7 +54,7 @@ class FeaturesController extends Controller
      *
      * @param int $id
      * @param StoreFeaturesRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update($id, StoreFeaturesRequest $request)
     {
@@ -63,7 +67,7 @@ class FeaturesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function destroy($id)
     {

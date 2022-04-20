@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -103,12 +104,21 @@ class Features extends Model
 
         'handicappedPersonsAccess' => [],
 
-        'workSpaceId' => [],
+//        'workSpaceId' => [],
+
+        'workSpaceId' => [
+            'relation' => 'workSpace',
+            'required' => true,
+            'rules' => [
+                'integer',
+                'exists:workSpace,workSpaceId',
+            ],
+        ],
 
     ];
 
-    public function workSpace(): HasOne
+    public function workSpace(): BelongsTo
     {
-        return $this->hasOne(WorkSpace::class);
+        return $this->belongsTo(WorkSpace::class, 'workSpaceId', 'workSpaceId');
     }
 }

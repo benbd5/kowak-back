@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,12 @@ class CreateLocationTable extends Migration
     public function up()
     {
         Schema::create('location', function (Blueprint $table) {
-            $table->integer('workSpaceId');
-            $table->integer('userId')->index('location_users0_FK');
+            $table->id('locationId');
+            $table->unsignedInteger('workSpaceId');
+            $table->unsignedInteger('userId');
             $table->dateTime('startDate');
             $table->dateTime('endDate');
-
-            $table->primary(['workSpaceId', 'userId']);
+            $table->timestamps();
         });
     }
 
@@ -32,4 +32,4 @@ class CreateLocationTable extends Migration
     {
         Schema::dropIfExists('location');
     }
-}
+};
