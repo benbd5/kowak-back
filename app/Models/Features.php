@@ -59,19 +59,15 @@ class Features extends Model
      * @var array
      */
     protected $fillable = [
-
         'featuresId',
-
+        'surface',
         'desk',
-
         'computerScreen',
-
         'kitchen',
-
         'handicappedPersonsAccess',
-
+        'parking',
+        'projector',
         'workSpaceId',
-
     ];
 
     /**
@@ -93,27 +89,24 @@ class Features extends Model
     ];
 
     const RuleList = [
-
         'featuresId' => [],
-
+        'surface' => [],
         'desk' => [],
-
         'computerScreen' => [],
-
         'kitchen' => [],
-
         'handicappedPersonsAccess' => [],
+        'parking' => [],
+        'projector' => [],
+        'workSpaceId' => [],
 
-//        'workSpaceId' => [],
-
-        'workSpaceId' => [
-            'relation' => 'workSpace',
-            'required' => true,
-            'rules' => [
-                'integer',
-                'exists:workSpace,workSpaceId',
-            ],
-        ],
+//        'workSpaceId' => [
+//            'relation' => 'workSpace',
+//            'required' => true,
+//            'rules' => [
+//                'integer',
+//                'exists:workSpace,workSpaceId',
+//            ],
+//        ],
 
     ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -17,6 +18,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class Location extends Model
 {
+    use HasFactory;
 
     /**
      * The table associated with the model.

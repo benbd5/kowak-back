@@ -15,10 +15,22 @@ return new class extends Migration
     {
         Schema::create('location', function (Blueprint $table) {
             $table->id('locationId');
-            $table->unsignedInteger('workSpaceId');
-            $table->unsignedInteger('userId');
+            $table->unsignedBigInteger('workSpaceId');
+            $table->unsignedBigInteger('userId');
             $table->dateTime('startDate');
             $table->dateTime('endDate');
+
+            $table->foreign(['userId'], 'location_users0_FK')
+                ->references(['userId'])
+                ->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('NO ACTION');
+
+            $table->foreign(['workSpaceId'], 'location_workSpace_FK')
+                ->references(['workSpaceId'])
+                ->on('workSpace')
+                ->onUpdate('CASCADE')
+                ->onDelete('NO ACTION');
             $table->timestamps();
         });
     }

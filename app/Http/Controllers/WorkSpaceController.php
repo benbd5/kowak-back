@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFeaturesRequest;
 use App\Models\Appartenir;
 use App\Models\Features;
 use App\Models\Users;
@@ -29,18 +30,15 @@ class WorkSpaceController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreWorkSpaceRequest $request
+     * @param StoreFeaturesRequest $featuresRequest
      * @return JsonResponse
      */
-    public function store(StoreWorkSpaceRequest $request)
+    public function store(StoreWorkSpaceRequest $request, StoreFeaturesRequest $featuresRequest)
     {
         $item = new WorkSpace;
-        $features = new Features();
         $item->fill($request->validated());
-//        $features->fill($request->validated());
-//        var_dump($item);
-//        var_dump($features);
-//        $item->features()->save();
         $item->save();
+
         // Associate users with the workspace
         $user = auth()->user();
         $item->usersAppartenir()->attach($user);
@@ -59,7 +57,8 @@ class WorkSpaceController extends Controller
     public function show(int $idWorkspace)
     {
         // Get the user associated with the id of the Workspace in the table appartenir
-        $item= WorkSpace::with('usersAppartenir')->with('features')->findOrFail($idWorkspace);
+//        $item= WorkSpace::with('usersAppartenir')->with('features')->findOrFail($idWorkspace);
+        $item= WorkSpace::with('usersAppartenir')->findOrFail($idWorkspace);
 
         return response()->json(compact('item'));
     }

@@ -14,10 +14,11 @@ class CreateAppartenirTable extends Migration
     public function up()
     {
         Schema::create('appartenir', function (Blueprint $table) {
-            $table->integer('workSpaceId');
-            $table->integer('userId')->index('appartenir_users0_FK');
+            $table->unsignedBigInteger('workSpaceId');
+            $table->unsignedBigInteger('userId')->index('appartenir_users0_FK');
 
             $table->primary(['workSpaceId', 'userId']);
+            $table->timestamps();
         });
     }
 

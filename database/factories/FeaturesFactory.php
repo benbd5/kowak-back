@@ -18,15 +18,18 @@ class FeaturesFactory extends Factory
     public function definition()
     {
         return [
+            'surface' => $this->faker->numberBetween(15, 200),
             'desk' => $this->faker->numberBetween(1, 10),
             'computerScreen' => $this->faker->numberBetween(1, 10),
-//          'projector' => $this->faker->numberBetween(1, 10),
-//          'whiteboard' => $this->faker->numberBetween(1, 10),
+            'projector' => $this->faker->numberBetween(1, 10),
+            'parking' => $this->faker->boolean,
             'kitchen' => $this->faker->boolean,
             'handicappedPersonsAccess' => $this->faker->boolean,
             'workSpaceId' => function () {
                 return WorkSpace::factory()->create()->id;
             },
+            'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
+            'updated_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];
     }
 }

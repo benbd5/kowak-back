@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Overtrue\LaravelFavorite\Traits\Favoriteable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class WorkSpace extends Model
 {
 
-    use HasFactory;
+    use HasFactory, Favoriteable;
 
     /**
      * The table associated with the model.
@@ -60,23 +61,22 @@ class WorkSpace extends Model
      * @var array
      */
     protected $fillable = [
-
         'workSpaceId',
-
         'name',
-
         'region',
-
         'zipCode',
-
         'departement',
-
         'city',
-
         'latitude',
-
         'longitude',
-
+        'description',
+        'surface',
+        'desk',
+        'computerScreen',
+        'kitchen',
+        'handicappedPersonsAccess',
+        'parking',
+        'projector',
     ];
 
     /**
@@ -98,25 +98,22 @@ class WorkSpace extends Model
     ];
 
     const RuleList = [
-
         'workSpaceId' => [],
-
         'name' => [],
-
         'region' => [],
-
         'zipCode' => [],
-
         'departement' => [],
-
         'city' => [],
-
         'latitude' => [],
-
         'longitude' => [],
-
-        'featuresId' => [],
-
+        'description' => [],
+        'surface' => [],
+        'desk' => [],
+        'computerScreen' => [],
+        'kitchen' => [],
+        'handicappedPersonsAccess' => [],
+        'parking' => [],
+        'projector' => [],
     ];
 
     public function usersAppartenir(): BelongsToMany

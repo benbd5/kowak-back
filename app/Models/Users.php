@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use ChristianKuri\LaravelFavorite\Traits\Favoriteability;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Overtrue\LaravelFavorite\Traits\Favoriter;
 
 /**
  * Class Users
@@ -22,7 +24,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class Users extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Favoriter;
 
     /**
      * The table associated with the model.
@@ -115,5 +117,11 @@ class Users extends Authenticatable
     public function workSpaceLocation(): BelongsToMany
     {
         return $this->belongsToMany(WorkSpace::class, 'location', 'userId', 'workSpaceId');
+    }
+
+    public function getFavoritesWorkspaces(): HasMany
+    {
+//        return $this->belongsToMany(WorkSpace::class, 'favorites', 'user_id', 'user_id');
+        return $this->hasMany(WorkSpace::class, );
     }
 }

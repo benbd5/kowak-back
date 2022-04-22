@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppartenirController;
@@ -23,8 +25,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
     Route::apiResource('workSpace', WorkSpaceController::class);
-    Route::apiResource('features', FeaturesController::class);
     Route::apiResource('appartenir', AppartenirController::class);
     Route::apiResource('location', LocationController::class);
+    Route::apiResource('userProfile', UsersController::class);
+
+    // Toggle favorite workSpace for current user
+    Route::get('like/{slug}',FavoriteController::class.'@like');
 });
 
