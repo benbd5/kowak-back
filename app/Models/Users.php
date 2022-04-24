@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use ChristianKuri\LaravelFavorite\Traits\Favoriteability;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,7 +23,7 @@ use Overtrue\LaravelFavorite\Traits\Favoriter;
  * @property string $email
  * @property string $password
  */
-class Users extends Authenticatable
+class Users extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, Favoriter;
 
