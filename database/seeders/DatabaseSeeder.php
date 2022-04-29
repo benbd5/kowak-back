@@ -24,12 +24,12 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         $ids = range(1, 10);
-        Location::factory(3)->create();
+//        Location::factory(3)->create();
 
         WorkSpace::factory(20)->create()->each(function ($workSpace) use($ids) {
             shuffle($ids);
             $workSpace->usersAppartenir()->attach(array_slice($ids, 0, rand(1, 2)));
-            $workSpace->usersLocation()->attach(array_slice($ids, 0, rand(1, 2)));
+//            $workSpace->usersLocation()->attach(array_slice($ids, 0, rand(1, 2)));
 //            $workSpace->features()->saveMany(Features::factory(rand(1, 3))->make());
         });
 

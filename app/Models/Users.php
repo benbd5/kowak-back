@@ -23,7 +23,8 @@ use Overtrue\LaravelFavorite\Traits\Favoriter;
  * @property string $email
  * @property string $password
  */
-class Users extends Authenticatable implements MustVerifyEmail
+//class Users extends Authenticatable implements MustVerifyEmail
+class Users extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Favoriter;
 
@@ -109,6 +110,16 @@ class Users extends Authenticatable implements MustVerifyEmail
         'password' => [],
 
     ];
+
+    public static function where(string $string, $email)
+    {
+        return self::where('email', $email)->first();
+    }
+
+    public static function getUserByEmail($email)
+    {
+        return self::where('email', $email)->first();
+    }
 
     public function workSpaceAppartenir(): BelongsToMany
     {
