@@ -20,6 +20,7 @@ class CreateWorkSpaceTable extends Migration
             $table->string('zipCode', 5);
             $table->string('departement');
             $table->string('city');
+            $table->string('address');
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
             $table->text('description');

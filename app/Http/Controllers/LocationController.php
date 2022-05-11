@@ -20,7 +20,12 @@ class LocationController extends Controller
     {
         $idOfUserAuthenticated = Auth::id();
         if(Location::query()->where('userId', $idOfUserAuthenticated)->exists()) {
+            // return locations of the user authenticated associated with the workspaces he has rented
             $locations = Location::query()->where('userId', $idOfUserAuthenticated)->get();
+            $locations->transform(function ($location) {
+                $location->workSpace = WorkSpace::query()->where('workSpaceId', $location->workSpaceId)->first();
+                return $location;
+            });
             return response()->json($locations);
         }
     }
