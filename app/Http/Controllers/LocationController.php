@@ -122,10 +122,23 @@ class LocationController extends Controller
      */
     public function destroy(int $id)
     {
-        $count = Location::destroy($id);
-        if ($count) {
-            return response()->json('OK');
+        $idOfUserAuthenticated = Auth::id();
+
+        if(Location::query()->where('locationId', $id)->where('userId', $idOfUserAuthenticated)->exists()) {
+            $item = Location::query()->where('locationId', $id)->delete();
+
+            if($item) {
+                Location::query()->findOrFail($id)->delete();
+                return response()->json('OK');
+            }else{
+                return response()->json(['error' => 'You are not the owner of this rent'], 403);
+            }
         }
         return response()->json('Resource already deleted!', 410);
+
+//        $count = Location::destroy($id);
+//        if ($count) {
+//            return response()->json('OK');
+//        }
     }
 }

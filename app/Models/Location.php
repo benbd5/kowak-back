@@ -32,7 +32,7 @@ class Location extends Model
      *
      * @var string
      */
-    protected $primaryKey = '';
+    protected $primaryKey = 'locationId';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -54,15 +54,11 @@ class Location extends Model
      * @var array
      */
     protected $fillable = [
-
+        'locationId',
         'workSpaceId',
-
         'userId',
-
         'startDate',
-
         'endDate',
-
     ];
 
     /**
@@ -84,6 +80,8 @@ class Location extends Model
     ];
 
     const RuleList = [
+
+        'locationId' => [],
 
         'workSpaceId' => [],
 
