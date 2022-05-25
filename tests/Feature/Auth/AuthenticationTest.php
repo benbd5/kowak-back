@@ -8,19 +8,12 @@ use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
 {
-    use RefreshDatabase;
-
-    public function test_users_can_authenticate_using_the_login_screen()
+    public function test_users_can_authenticate_using_sanctum()
     {
-        $user = Users::factory()->create();
+        $this->actingAs(Users::factory()->create());
+        $response = $this->get('/');
 
-        $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
-
-        $this->assertAuthenticated();
-        $response->assertNoContent();
+        $response->assertOk();
     }
 
     public function test_users_can_not_authenticate_with_invalid_password()

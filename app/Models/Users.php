@@ -75,6 +75,8 @@ class Users extends Authenticatable
 
         'password',
 
+        'job'
+
     ];
 
     /**
@@ -108,6 +110,8 @@ class Users extends Authenticatable
         'email' => [],
 
         'password' => [],
+
+        'job' => [],
 
     ];
 

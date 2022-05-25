@@ -30,10 +30,9 @@ class WorkSpaceController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreWorkSpaceRequest $request
-     * @param StoreFeaturesRequest $featuresRequest
      * @return JsonResponse
      */
-    public function store(StoreWorkSpaceRequest $request, StoreFeaturesRequest $featuresRequest)
+    public function store(StoreWorkSpaceRequest $request)
     {
         $item = new WorkSpace;
         $item->fill($request->validated());
@@ -42,8 +41,6 @@ class WorkSpaceController extends Controller
         // Associate users with the workspace
         $user = auth()->user();
         $item->usersAppartenir()->attach($user);
-
-        // Save workspace with features
 
         return response()->json(compact('item'));
     }
